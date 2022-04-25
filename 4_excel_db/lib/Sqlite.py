@@ -9,7 +9,7 @@ class SqliteIo:
     # SQLite Read
     ##################################################################
 
-    def read():
+    def read(self):
         try:
             con = sqlite3.connect('./4_excel_db/test.db')        
             cur = con.cursor()
@@ -25,9 +25,9 @@ class SqliteIo:
     # SQLlite Write
     ##################################################################
 
-    def insert(data):
+    def insert(self, data):
     
-        SqliteIo.create()
+        SqliteIo.create(self)
 
         coulmn_name = data[0]
         del data[0]
@@ -37,7 +37,6 @@ class SqliteIo:
             cur = con.cursor()
             cur.executemany(f'INSERT INTO VOC_20210817({coulmn_name[0]}, {coulmn_name[1]}, {coulmn_name[2]}) VALUES(?,?,?)', data)
             con.commit()
-            SqliteIo.read()
         
         finally:
             con.close()
@@ -46,7 +45,7 @@ class SqliteIo:
     # SQLlite Create
     ##################################################################
 
-    def create():
+    def create(self):
         try:
             con = sqlite3.connect('./4_excel_db/test.db')
             cur = con.cursor()

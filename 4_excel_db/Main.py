@@ -52,5 +52,4 @@ def get_file_name(file):
 
 file = csv_io.read("VOC_20210817")
 data = list(file)
-SqliteIo.insert(data)
-# SqliteIo.create()
+sqlite_io.insert(data)
