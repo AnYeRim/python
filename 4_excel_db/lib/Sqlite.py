@@ -9,14 +9,13 @@ class SqliteIo:
     # SQLite Read
     ##################################################################
 
-    def read(self):
+    def select(self, file_name):
         try:
             con = sqlite3.connect('./4_excel_db/test.db')        
             cur = con.cursor()
 
-            cur.execute('select * from VOC_20210817;')
-            items = cur.fetchall()
-            print(items)
+            cur.execute(f'select * from {file_name};')
+            return cur.fetchall()
         
         finally:
             con.close()
@@ -54,3 +53,10 @@ class SqliteIo:
         
         finally:
             con.close()
+
+    def to_array(self, rows):
+        data = []
+        for row in rows:
+            data.append(list(row))
+
+        return data

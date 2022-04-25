@@ -50,6 +50,14 @@ def get_file_name(file):
 # csv 파일 - db로 저장
 ##################################################################
 
-file = csv_io.read("VOC_20210817")
-data = list(file)
-sqlite_io.insert(data)
+# file = csv_io.read("VOC_20210817")
+# data = list(file)
+# sqlite_io.insert(data)
+
+##################################################################
+# db 데이터 - csv로 저장
+##################################################################
+
+rows = sqlite_io.select("VOC_20210817")
+data = sqlite_io.to_array(rows)
+csv_io.write("VOC_20210817(2)", data)
