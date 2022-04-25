@@ -60,4 +60,5 @@ def get_file_name(file):
 
 rows = sqlite_io.select("VOC_20210817")
 data = sqlite_io.to_array(rows)
+data.insert(0,["refID","POI_ID","tag"])
 csv_io.write("VOC_20210817(2)", data)
