@@ -7,6 +7,10 @@ csv_io = CsvIo()
 excel_io = ExcelIo()
 sqlite_io = SqliteIo()
 
+init_file_name = 'VOC_20210817'
+# 아래 파일은 인코딩 ANSI로 변경해야 함.
+# init_file_name = 'OPENING_INFO'
+
 ##################################################################
 # txt 파일 읽기
 ##################################################################
@@ -45,7 +49,7 @@ def get_file_name(file):
 ##################################################################
 
 def text_to_excel():
-    file = read_file("VOC_20210817.txt")
+    file = read_file(f"{init_file_name}.txt")
     data = txt_file_to_array(file, "|")
     excel_io.write(get_file_name(file), data)
 
@@ -54,22 +58,22 @@ def text_to_excel():
 ##################################################################
 
 def print_excel():
-    excel_io.print("VOC_20210817")
+    excel_io.print(f"{init_file_name}")
 
 ##################################################################
 # excel 파일 - csv로 저장
 ##################################################################
 
 def excel_to_csv():
-    data = excel_io.read("VOC_20210817")
-    csv_io.write("VOC_20210817", data)
+    data = excel_io.read(f"{init_file_name}")
+    csv_io.write(f"{init_file_name}", data)
 
 ##################################################################
 # csv 파일 - db로 저장
 ##################################################################
 
 def csv_to_db():
-    file = csv_io.read("VOC_20210817")
+    file = csv_io.read(f"{init_file_name}")
     data = list(file)
     sqlite_io.insert(data)
 
@@ -78,10 +82,10 @@ def csv_to_db():
 ##################################################################
 
 def db_to_csv():
-    rows = sqlite_io.select("VOC_20210817")
+    rows = sqlite_io.select(f"{init_file_name}")
     data = sqlite_io.to_array(rows)
     data.insert(0,["refID","POI_ID","tag"])
-    csv_io.write("VOC_20210817(2)", data)
+    csv_io.write(f"{init_file_name}(2)", data)
 
 ##################################################################
 # 작업할 것

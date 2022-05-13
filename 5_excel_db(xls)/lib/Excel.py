@@ -1,4 +1,5 @@
 
+from openpyxl.styles.fonts import Font
 from time import sleep
 import openpyxl
 from openpyxl import Workbook
@@ -19,16 +20,18 @@ class ExcelIo:
  
     def write(self, file_name, data):    
         f = openpyxl.Workbook()
+        # sheet = f.worksheets[0]
         
         sheet = f.active
         sheet.title = 'Data'
+        # sheet['A1:C1'].font = Font(size=48, italic=True, color='ff9999')
 
         data_length = len(data)
 
         for index, value in enumerate(data):
             sheet.append(value)
             print('\rExcel 작성 중 : {}'.format(round((index+1)/data_length*100)), end='')
-            sleep(0.002)
+            # sleep(0.002)
             
         print('\n')
 
@@ -52,7 +55,7 @@ class ExcelIo:
                 row_data.append(cell.value)
             data.append(row_data)
             print('\rExcel 읽는 중 : {}'.format(round((index+1)/max_row*100)), end='')
-            sleep(0.0002)
+            # sleep(0.002)
 
         print('\n')
         
