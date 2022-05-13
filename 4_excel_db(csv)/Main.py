@@ -10,7 +10,7 @@ sqlite_io = SqliteIo()
 ##################################################################
 
 def read_file(file_name):
-    return open(f"./4_excel_db/{file_name}", "r", encoding='utf-8')
+    return open(f"./4_excel_db(csv)/{file_name}", "r", encoding='utf-8')
 
 ##################################################################
 # txt 파일을 delimiter로 구분하여 배열에 저장

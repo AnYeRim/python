@@ -15,7 +15,7 @@ class CsvIo:
     ##################################################################
  
     def write(self, file_name, data):    
-        f = open(f"./4_excel_db/{file_name}.csv", 'w', encoding='utf-8', newline='')
+        f = open(f"./4_excel_db(csv)/{file_name}.csv", 'w', encoding='utf-8', newline='')
         wr = csv.writer(f, delimiter=',')
         wr.writerows(data)
         f.close
@@ -25,7 +25,7 @@ class CsvIo:
     ##################################################################
 
     def read(self, file_name):
-        fr = open(f"./4_excel_db/{file_name}.csv", 'r', encoding='utf-8')
+        fr = open(f"./4_excel_db(csv)/{file_name}.csv", 'r', encoding='utf-8')
         wr = csv.reader(fr, delimiter=',')
         fr.close
 
