@@ -36,6 +36,7 @@ class SqliteIo:
             cur = con.cursor()
             cur.executemany(f'INSERT INTO VOC_20210817({coulmn_name[0]}, {coulmn_name[1]}, {coulmn_name[2]}) VALUES(?,?,?)', data)
             con.commit()
+            print('DB - Table 데이터 추가 OK')
         
         finally:
             con.close()
@@ -46,10 +47,11 @@ class SqliteIo:
 
     def create(self):
         try:
-            con = sqlite3.connect('.//5_excel_db(xls)/test.db')
+            con = sqlite3.connect('./5_excel_db(xls)/test.db')
             cur = con.cursor()
             cur.execute('CREATE TABLE IF NOT EXISTS VOC_20210817(refID TEXT NOT NULL, POI_ID TEXT NOT NULL, tag TEXT NOT NULL)')
             con.commit()
+            print('DB - Table 생성 OK')
         
         finally:
             con.close()

@@ -19,6 +19,8 @@ class CsvIo:
         wr = csv.writer(f, delimiter=',')
         wr.writerows(data)
         f.close
+        
+        print('Csv로 저장 완료')
 
     ##################################################################
     # CSV File Read
