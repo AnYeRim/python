@@ -43,7 +43,7 @@ class ExcelIo:
 
         for index, value in enumerate(data):
             sheet.append(value)
-            print('\rExcel 작성 중 : {}'.format(round((index+1)/data_length*100)), end='')
+            print('\rExcel 작성 중 : {}%'.format(round((index+1)/data_length*100)), end='')
             # sleep(0.002)
         
         ExcelIo.title_style(self, sheet)
@@ -69,7 +69,7 @@ class ExcelIo:
             for cell in row:
                 row_data.append(cell.value)
             data.append(row_data)
-            print('\rExcel 읽는 중 : {}'.format(round((index+1)/max_row*100)), end='')
+            print('\rExcel 읽는 중 : {}%'.format(round((index+1)/max_row*100)), end='')
             # sleep(0.002)
 
         print('\n')

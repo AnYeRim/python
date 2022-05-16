@@ -2,6 +2,7 @@ from lib.Sqlite import SqliteIo
 from lib.Csv import CsvIo
 from lib.Excel import ExcelIo
 from pathlib import Path
+import struct
 
 csv_io = CsvIo()
 excel_io = ExcelIo()
@@ -107,6 +108,23 @@ def inut_oper():
     print("choise number : {%d}" % ion)
     return ion
 
+def write_binaryfile():
+    with open(f"./test.bin", 'wb') as f:
+        # data = bytes([1, 2, 3, 4, 5, 6])
+        test = bytes('test', 'utf-8')
+        datas = struct.pack("4sidd", test, 1, 34.4, 12.1)
+        wr = f.write(datas)
+        f.close    
+
+    # a = f.read()
+    
+
+def read_binaryfile():
+    with open(f"./test.bin", 'rb') as f:
+        datas = f.read()
+        lists = struct.unpack("4sidd", datas)
+        print(lists)
+
 def get_operation(value):
     return {
         0: text_to_excel,
@@ -116,11 +134,14 @@ def get_operation(value):
         4: db_to_csv
     }.get(value, None)
 
-print_echo()
-oper = inut_oper()
-fnc = get_operation(oper)
+# print_echo()
+# oper = inut_oper()
+# fnc = get_operation(oper)
 
-if fnc != None:
-    fnc()
+write_binaryfile()
+read_binaryfile()
+
+# if fnc != None:
+#     fnc()
 
 print("finish")
