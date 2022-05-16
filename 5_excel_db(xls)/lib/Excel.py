@@ -1,5 +1,8 @@
 
 from openpyxl.styles.fonts import Font
+from openpyxl.styles import PatternFill, Border, Side
+from openpyxl.styles.alignment import Alignment
+
 from time import sleep
 import openpyxl
 from openpyxl import Workbook
@@ -15,6 +18,17 @@ class ExcelIo:
         pass
 
     ##################################################################
+    # Excel File - Title Style
+    ##################################################################
+
+    def title_style(self, sheet):
+        for num in range(len(sheet["1"])):
+            sheet.cell(1, num+1).font = Font(size=16, italic=True, bold=True, color='002060')
+            sheet.cell(1,num+1).fill = PatternFill(start_color='e0e0e0', end_color='ffff99', fill_type='solid')
+            sheet.cell(1,num+1).alignment = Alignment(horizontal='center', vertical='center')
+            sheet.cell(1,num+1).border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
+
+    ##################################################################
     # Excel File Write
     ##################################################################
  
@@ -24,7 +38,6 @@ class ExcelIo:
         
         sheet = f.active
         sheet.title = 'Data'
-        # sheet['A1:C1'].font = Font(size=48, italic=True, color='ff9999')
 
         data_length = len(data)
 
@@ -32,6 +45,8 @@ class ExcelIo:
             sheet.append(value)
             print('\rExcel 작성 중 : {}'.format(round((index+1)/data_length*100)), end='')
             # sleep(0.002)
+        
+        ExcelIo.title_style(self, sheet)
             
         print('\n')
 
@@ -84,6 +99,3 @@ class ExcelIo:
         #     for j in range(1, max_column + 1):
         #         print(sheet.cell(row=i, column=j).value, end= ' | ')
         #     print('\n')
-
-
-        
